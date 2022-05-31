@@ -23,7 +23,7 @@ func main() {
 		errors.As(err, "err")
 	}
 	db.AutoMigrate(&Url{})
-	filepath := "res/wukong50k_release.csv"
+	filepath := "src/wukong50k_release.csv"
 
 	opencast, err := os.Open(filepath)
 	if err != nil {
