@@ -1,53 +1,25 @@
 package controller
 
 import (
-	"SearchEngineV2/register"
-	"fmt"
+	"SearchEngineV2/model"
 	"github.com/gin-gonic/gin"
 )
 
-type QueryResult struct {
-	uid int32 `json:"uid"`
-}
-
-func Authenticate(c *gin.Context) {
-	u := c.Query("u")
-	p := c.Query("p")
-	if u == "" || p == "" {
-		ResponseErrorWithMsg(c, "请输入用户名和密码")
-		return
-	}
-	uid := srv.Register.CheckUserExisted(&register.LogUser{
-		UserName: u,
-		UserPwd:  p,
-	})
-	if uid == -1 {
-		ResponseErrorWithMsg(c, "用户名或密码错误")
-	} else {
-		fmt.Println(uid)
-		ResponseSuccessWithData(c, &QueryResult{uid: uid})
-	}
-
-}
-
 func Register(c *gin.Context) {
-	u := c.Query("u")
-	p := c.Query("p")
-	if u == "" || p == "" {
-		ResponseErrorWithMsg(c, "请输入用户名和密码")
+	var u model.RegisterUserRequest
+	if err := c.ShouldBind(&u); err != nil {
+		ResponseErrorWithMsg(c, "接口参数错误")
 		return
 	}
-	res := srv.Register.RegisterNewUser(&register.User{
-		UserName: u,
-		UserPwd:  p,
-	})
-	if res > 0 {
-		ResponseSuccessWithData(c, "注册重成功")
+	isOK := srv.Register.RegisterUser(&u)
+	if isOK {
+		ResponseSuccess(c)
 	} else {
-		ResponseErrorWithMsg(c, "重复用户名")
+		ResponseErrorWithMsg(c, "注册用户失败")
 	}
+	return
 }
 
-func Delete(c *gin.Context) {
-	ResponseErrorWithMsg(c, "功能开发中")
+func IsValid(c *gin.Context) {
+
 }

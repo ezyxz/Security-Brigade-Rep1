@@ -1,19 +1,14 @@
 package controller
 
 import (
+	"SearchEngineV2/model"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
 
-type ResponseData struct {
-	State   bool        `json:"state"`
-	Message string      `json:"message,omitempty"`
-	Data    interface{} `json:"data,omitempty"`
-}
-
 // ResponseSuccessWithData 携带数据成功返回
 func ResponseSuccessWithData(c *gin.Context, data interface{}) {
-	c.JSON(http.StatusOK, &ResponseData{
+	c.JSON(http.StatusOK, &model.ResponseData{
 		State:   true,
 		Message: "success",
 		Data:    data,
@@ -22,7 +17,7 @@ func ResponseSuccessWithData(c *gin.Context, data interface{}) {
 
 // ResponseErrorWithMsg 返回错误
 func ResponseErrorWithMsg(c *gin.Context, message string) {
-	c.JSON(http.StatusOK, &ResponseData{
+	c.JSON(http.StatusOK, &model.ResponseData{
 		State:   false,
 		Message: message,
 		Data:    nil,
@@ -31,7 +26,7 @@ func ResponseErrorWithMsg(c *gin.Context, message string) {
 
 // ResponseSuccess 返回成功
 func ResponseSuccess(c *gin.Context) {
-	c.JSON(http.StatusOK, &ResponseData{
+	c.JSON(http.StatusOK, &model.ResponseData{
 		State:   true,
 		Message: "success",
 		Data:    nil,
