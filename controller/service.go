@@ -10,6 +10,7 @@ type Services struct {
 	Word     *service.Word
 	Searcher *service.Search
 	Register *service.Register
+	Login    *service.Login
 }
 
 func NewServices() {
@@ -17,5 +18,6 @@ func NewServices() {
 		Word:     service.NewWord(),
 		Searcher: service.NewSearch(),
 		Register: service.NewRegister(),
+		Login:    service.NewLogin(),
 	}
 }

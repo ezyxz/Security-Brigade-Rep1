@@ -2,7 +2,7 @@ package service
 
 import (
 	"SearchEngineV2/global"
-	"SearchEngineV2/register"
+	"SearchEngineV2/model"
 	"SearchEngineV2/searcher"
 )
 
@@ -15,10 +15,11 @@ func NewRegister() *Register {
 		Container: global.Container,
 	}
 }
-func (w *Register) CheckUserExisted(user *register.LogUser) int32 {
-	return w.Container.Register.CheckUser(user)
-}
 
-func (w *Register) RegisterNewUser(user *register.User) int {
-	return w.Container.Register.RegisterUser(user)
+//func (w *Register) CheckUserExisted(u *controller.RegisterUserData) int32 {
+//
+//}
+
+func (w *Register) RegisterUser(request *model.RegisterUserRequest) bool {
+	return w.Container.Engine.InsertUser(request)
 }
