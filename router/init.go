@@ -9,6 +9,7 @@ func SetupRouter() *gin.Engine {
 		InitWordRouter(group)   // 分词管理
 		InitSearchRouter(group) //搜索
 		InitUserRouter(group)
+		InitHintRouter(group)
 	}
 
 	return router
