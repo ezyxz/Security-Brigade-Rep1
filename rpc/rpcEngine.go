@@ -4,9 +4,10 @@ import (
 	"SearchEngineV2/rpc/com/Hint"
 	"context"
 	"fmt"
-	"github.com/apache/thrift/lib/go/thrift"
 	"log"
 	"os"
+
+	"github.com/apache/thrift/lib/go/thrift"
 )
 
 type RpcEngine struct {

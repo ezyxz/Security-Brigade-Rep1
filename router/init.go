@@ -10,6 +10,7 @@ func SetupRouter() *gin.Engine {
 		InitSearchRouter(group) //搜索
 		InitUserRouter(group)
 		InitHintRouter(group)
+		InitSimilar(group) //相似
 	}
 
 	return router

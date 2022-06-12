@@ -12,6 +12,7 @@ type Services struct {
 	Register *service.Register
 	Login    *service.Login
 	Hint     *service.Hint
+	Similar  *service.Similar
 }
 
 func NewServices() {
@@ -21,5 +22,6 @@ func NewServices() {
 		Register: service.NewRegister(),
 		Login:    service.NewLogin(),
 		Hint:     service.NewHint(),
+		Similar:  service.NewSimilar(),
 	}
 }
